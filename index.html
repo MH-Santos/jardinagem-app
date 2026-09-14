@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#1f6f4a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <title>Jardinagem — Gestão</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">Gestão de jardinagem</div>
+        <h1 id="page-title">Hoje</h1>
+      </div>
+      <button class="icon-btn" id="backup-reminder-btn" title="Backup">↥</button>
+    </header>
+
+    <main id="main" class="main"></main>
+
+    <nav class="bottom-nav" aria-label="Navegação">
+      <button data-route="home">⌂<span>Início</span></button>
+      <button data-route="calendar">▦<span>Calendário</span></button>
+      <button data-route="jobs">✓<span>Trabalhos</span></button>
+      <button data-route="clients">♙<span>Clientes</span></button>
+      <button data-route="more">☰<span>Mais</span></button>
+    </nav>
+  </div>
+
+  <div id="modal-root"></div>
+  <input id="photo-input" type="file" accept="image/*" capture="environment" multiple hidden>
+  <script src="./app.js"></script>
+</body>
+</html>
