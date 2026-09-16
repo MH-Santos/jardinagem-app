@@ -1,6 +1,6 @@
 {
-  "name": "Gestão de Jardinagem",
-  "short_name": "Jardinagem",
+  "name": "Jardim-app",
+  "short_name": "Jardim-app",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#f6f7f5",
