@@ -1,4 +1,4 @@
-# Jardim-app V6
+# Jardim-app V6.1
 
 Aplicação local-first para gestão pessoal de trabalhos de jardinagem.
 
@@ -23,3 +23,14 @@ Aplicação local-first para gestão pessoal de trabalhos de jardinagem.
 
 ## Atualização
 Antes de substituir os ficheiros no GitHub Pages, fazer um backup JSON dentro do Jardim-app.
+
+## V6.1 — ajustes desta iteração
+- Versão visível no cabeçalho da aplicação.
+- Orçamentos integrados no separador Trabalhos, com sub-separador próprio; removido o acesso redundante em Mais.
+- Numeração de orçamentos automática por ano civil: novo ano inicia em /001.
+- Contadores de partes, ocorrências e intervalos inteiros com setas +/− onde faz sentido.
+- Recorrências calculadas sempre a partir da primeira data/hora, com pré-visualização das ocorrências.
+- Calendário identifica explicitamente a parte de cada trabalho.
+- Cada parte possui estado e sessão independentes; custos e horas permanecem agregados ao trabalho.
+- É possível registar um início real anterior à hora atual.
+- Interface deixa de apresentar “Pausar”; “Terminar sessão” encerra a sessão.

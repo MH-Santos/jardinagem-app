@@ -13,3 +13,5 @@
 .photo-item{position:relative}.photo-item img{display:block}.photo-delete{position:absolute;top:4px;right:4px;width:28px;height:28px;border:0;border-radius:50%;background:rgba(0,0,0,.65);color:#fff;font-size:18px;line-height:28px;padding:0}.danger{background:#fff0f0;color:#a52e2e;border:1px solid #e4b5b5}
 .modal{max-height:94dvh}.modal-content{-webkit-overflow-scrolling:touch}.modal-footer{padding-bottom:max(8px,env(safe-area-inset-bottom))}
 @media(max-width:700px){.modal{max-height:92dvh}.modal-footer .actions{flex-wrap:wrap}.modal-footer button{min-height:44px}}
+
+.subtabs{display:flex;gap:6px;margin-bottom:12px;border-bottom:1px solid var(--line);padding-bottom:6px}.subtabs button{border:0;background:transparent;padding:9px 12px;border-radius:10px;color:var(--muted);font-weight:600}.subtabs button.active{background:var(--soft);color:var(--text)}
