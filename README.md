@@ -1,4 +1,4 @@
-# Jardim-app V6.1
+# Jardim-app V6.2
 
 Aplicação local-first para gestão pessoal de trabalhos de jardinagem.
 
@@ -24,7 +24,7 @@ Aplicação local-first para gestão pessoal de trabalhos de jardinagem.
 ## Atualização
 Antes de substituir os ficheiros no GitHub Pages, fazer um backup JSON dentro do Jardim-app.
 
-## V6.1 — ajustes desta iteração
+## V6.2 — ajustes desta iteração
 - Versão visível no cabeçalho da aplicação.
 - Orçamentos integrados no separador Trabalhos, com sub-separador próprio; removido o acesso redundante em Mais.
 - Numeração de orçamentos automática por ano civil: novo ano inicia em /001.
