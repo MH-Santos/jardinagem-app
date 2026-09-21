@@ -1,4 +1,4 @@
-# Jardim-app V6.2
+# Jardim-app V6.3
 
 Aplicação local-first para gestão pessoal de trabalhos de jardinagem.
 
@@ -34,3 +34,17 @@ Antes de substituir os ficheiros no GitHub Pages, fazer um backup JSON dentro do
 - Cada parte possui estado e sessão independentes; custos e horas permanecem agregados ao trabalho.
 - É possível registar um início real anterior à hora atual.
 - Interface deixa de apresentar “Pausar”; “Terminar sessão” encerra a sessão.
+
+
+## V6.3 — uniformização de datas, horas e utilização
+- Datas apresentadas transversalmente como `dd/mm/aaaa`.
+- Horas apresentadas transversalmente em formato de 24 horas (`HH:mm`), evitando os seletores AM/PM nativos do dispositivo.
+- Partes de trabalhos e de conversões de orçamentos distribuem automaticamente as horas estimadas pelo número de partes; a hora de fim é calculada a partir da hora de início e pode ser alterada manualmente.
+- Vista Calendário: escala horária alinhada com o início de cada hora; uma marcação 09:00–10:00 ocupa exatamente o intervalo entre as linhas 09:00 e 10:00.
+- Vista Calendário: botão separado `Converter orçamento`, encaminhando diretamente para o separador Orçamentos.
+- Geração de documentos: deixou de abrir automaticamente a janela de impressão. O documento abre primeiro com as imagens carregadas; a impressão passa a ser uma ação manual.
+- Rodapé dos modais preparado para permanecer acessível acima do teclado em ecrãs pequenos.
+- Cache PWA atualizada para V6.3.
+
+## Nota sobre PC, Android e iPhone
+A lógica funcional e o formato apresentado pela aplicação são agora uniformizados. A adaptação visual ao tamanho do ecrã continua a existir por razões de usabilidade, mas não deve alterar regras, cálculos, datas ou horas. A validação final em iPhone continua necessária, sobretudo para teclado, PWA e partilha de documentos.
