@@ -1,50 +1,60 @@
-# Jardim-app V6.3
+# Jardim-app V7.0
 
-Aplicação local-first para gestão pessoal de trabalhos de jardinagem.
+Aplicação pessoal (PWA) para gerir trabalhos de jardinagem: calendário, picagem de ponto, orçamentos, pagamentos, custos e equipamentos. Funciona no browser, sem servidor e sem serviços pagos. Os dados ficam guardados apenas no dispositivo.
 
-## V6 — principais alterações
-- Persistência mais segura: validação da estrutura carregada e tratamento de erros de `localStorage`.
-- Mantida a chave de dados existente `jardinagem-v1-data` para preservar os dados das versões anteriores.
-- Trabalhos: edição, cancelamento mantendo o histórico e eliminação individual de fotografias.
-- Reagendamento: permite escolher uma parte específica ou, explicitamente, reagendar todas as partes.
-- Preços: separação mais clara entre preço/hora, valor estimado e preço fixo.
-- Orçamentos: conversão para trabalho através de modal do Jardim-app, com definição das partes e suporte a séries periódicas.
-- Materiais dos orçamentos são transferidos para o trabalho como valores de materiais orçamentados.
-- Fotografias de orçamentos podem ser removidas individualmente.
-- Eliminação de clientes bloqueada quando existem dependências em trabalhos, orçamentos, custos ou pagamentos.
-- Lembrete de backup não abre sobre formulários/modais ativos.
-- Branding PWA atualizado para Jardim-app e cache do Service Worker para V6.
-- Ajustes de utilização em iPhone e `dvh` nos modais.
+## Atualizar no GitHub Pages
+1. Na versão atual da app, faça um backup (botão de nuvem no topo ou Mais › Definições › Fazer backup agora).
+2. No repositório: **Add file › Upload files** e arraste todos os ficheiros desta pasta, substituindo os existentes:
+   `index.html`, `styles.css`, `app.js`, `sw.js`, `manifest.webmanifest`, `icon.svg`, `icon-180.png`, `icon-192.png`, `icon-512.png`, `README.md`.
+3. **Commit changes**. Espere 1–2 minutos.
+4. Abra a app, feche-a e volte a abrir. A versão aparece no topo (Jardim-app V7.0). Os dados das versões anteriores são convertidos automaticamente.
+5. No iPhone, para o novo ícone aparecer, remova o atalho do ecrã principal e volte a adicioná-lo (Safari › Partilhar › Adicionar ao ecrã principal). Os dados mantêm-se.
 
-## Limitações / validação necessária
-- A aplicação continua a usar `localStorage`; não foi feita migração automática para IndexedDB.
-- Fotografias continuam comprimidas e guardadas localmente. Deve ser feito teste real no iPhone com várias fotografias.
-- PDF, exportação JSON/CSV, teclado e comportamento do PWA devem ser validados no iPhone.
+## Novidades da V7
+**Segurança dos dados**
+- Fotografias passam para IndexedDB (muito mais espaço); o JSON principal fica pequeno.
+- Se os dados guardados não puderem ser lidos, a app bloqueia gravações e permite descarregá-los, em vez de os apagar.
+- Versões de orçamentos guardadas sem duplicar fotografias (o tamanho já não cresce a cada edição).
+- Restaurar backup descarrega primeiro uma cópia dos dados atuais.
+- Backup inclui fotografias; no telemóvel abre a folha de partilha (Ficheiros, iCloud Drive, OneDrive, Google Drive). Lembrete configurável (mínimo 30 dias).
 
-## Atualização
-Antes de substituir os ficheiros no GitHub Pages, fazer um backup JSON dentro do Jardim-app.
+**Calendário e picagem de ponto**
+- Seletor de datas próprio em formato calendário; datas sempre dd/mm/aaaa e horas 24 h em qualquer dispositivo.
+- Vista dia/semana/mês ajustada ao ecrã; blocos alinhados com as horas (06:00–22:00); fora do horário a cinzento.
+- Partes não concluídas de dias anteriores aparecem tracejadas no dia de hoje.
+- Iniciar / Pausar / Concluir por parte; só um trabalho ativo de cada vez; barra fixa com o tempo a decorrer.
+- Início com hora real no passado; correção e registo manual de horas; aviso de sessão esquecida.
+- Ao iniciar fora da hora agendada, o trabalho é reposicionado no calendário.
+- Reagendar com motivo obrigatório, opção de mover as partes seguintes, e acrescentar partes.
 
-## V6.2 — ajustes desta iteração
-- Versão visível no cabeçalho da aplicação.
-- Orçamentos integrados no separador Trabalhos, com sub-separador próprio; removido o acesso redundante em Mais.
-- Numeração de orçamentos automática por ano civil: novo ano inicia em /001.
-- Contadores de partes, ocorrências e intervalos inteiros com setas +/− onde faz sentido.
-- Recorrências calculadas sempre a partir da primeira data/hora, com pré-visualização das ocorrências.
-- Calendário identifica explicitamente a parte de cada trabalho.
-- Cada parte possui estado e sessão independentes; custos e horas permanecem agregados ao trabalho.
-- É possível registar um início real anterior à hora atual.
-- Interface deixa de apresentar “Pausar”; “Terminar sessão” encerra a sessão.
+**Trabalhos, preços e orçamentos**
+- Horas estimadas repartidas automaticamente pelas partes; o fim acompanha o início.
+- Preço/hora e preço mínimo pré-preenchidos, com confirmação se forem alterados.
+- Séries periódicas calculadas a partir da primeira data (o dia 31 passa ao último dia dos meses curtos), com período do acordo (3 meses, 6 meses, 1 ano, 2 anos) e "Renovar série".
+- Orçamentos com número AAAA/NNN (recomeça a cada ano), versões, estados (Rascunho, Enviado, Aceite, Recusado, Convertido, Expirado) e fotografias.
+- Conversão de orçamento usa o mesmo formulário do trabalho; materiais passam a custos imputados (só na 1.ª ocorrência, salvo indicação).
 
+**Dinheiro**
+- Pagamento total ou parcial a partir do trabalho (valor pré-preenchido) ou por cliente, distribuído pelos trabalhos mais antigos.
+- Custos com categoria, associação a cliente/trabalho/equipamento e opção "imputar ao cliente" com margem.
+- Pagamentos e custos podem ser editados e eliminados.
+- Valores em dívida contam só trabalhos iniciados ou concluídos; cancelados não contam.
+- Painel com resultado (ganhos − custos reais), semana atual (agendado vs livre), pagos/parciais/por pagar, previsto vs realizado, evolução e análise de preço fixo (€/h real).
 
-## V6.3 — uniformização de datas, horas e utilização
-- Datas apresentadas transversalmente como `dd/mm/aaaa`.
-- Horas apresentadas transversalmente em formato de 24 horas (`HH:mm`), evitando os seletores AM/PM nativos do dispositivo.
-- Partes de trabalhos e de conversões de orçamentos distribuem automaticamente as horas estimadas pelo número de partes; a hora de fim é calculada a partir da hora de início e pode ser alterada manualmente.
-- Vista Calendário: escala horária alinhada com o início de cada hora; uma marcação 09:00–10:00 ocupa exatamente o intervalo entre as linhas 09:00 e 10:00.
-- Vista Calendário: botão separado `Converter orçamento`, encaminhando diretamente para o separador Orçamentos.
-- Geração de documentos: deixou de abrir automaticamente a janela de impressão. O documento abre primeiro com as imagens carregadas; a impressão passa a ser uma ação manual.
-- Rodapé dos modais preparado para permanecer acessível acima do teclado em ecrãs pequenos.
-- Cache PWA atualizada para V6.3.
+**Documentos**
+- Orçamento, nota de serviços (campos e fotografias à escolha) e extrato mensal do cliente.
+- Abrem dentro da app; a impressão / gravação em PDF é sempre manual.
 
-## Nota sobre PC, Android e iPhone
-A lógica funcional e o formato apresentado pela aplicação são agora uniformizados. A adaptação visual ao tamanho do ecrã continua a existir por razões de usabilidade, mas não deve alterar regras, cálculos, datas ou horas. A validação final em iPhone continua necessária, sobretudo para teclado, PWA e partilha de documentos.
+**Equipamentos**
+- Fotografias da fatura, garantia, tarefas de manutenção periódicas com avisos, histórico e custos.
+
+**Exportação**
+- CSV de trabalhos, pagamentos, custos e clientes (separador ";", datas dd/mm/aaaa, compatível com Excel).
+
+## Validação necessária no iPhone
+- Instalar no ecrã principal e confirmar: teclado não tapa os botões de gravar; backup abre "Guardar em Ficheiros"; "Imprimir / Guardar PDF" mostra o documento com logótipo e fotografias.
+- Fazer um backup logo após a primeira abertura da V7.
+
+## Limitações
+- Sem sincronização entre dispositivos: para mudar de telemóvel, use backup e restauro.
+- Os documentos não são faturas e não comunicam com a AT.
